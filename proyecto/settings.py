@@ -1,24 +1,22 @@
 from pathlib import Path
-import os 
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-u4a(b&b^21-65g_g6a$6tqo#5mj7_o!o7#m$bp1(h0bj^#9^--'
+# Obtén el SECRET_KEY desde las variables de entorno
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-u4a(b&b^21-65g_g6a$6tqo#5mj7_o!o7#m$bp1(h0bj^#9^--')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+# Mantén DEBUG en False para producción
+DEBUG = False
 
-ALLOWED_HOSTS = ['artisan.onrender.com', 'localhost', '127.0.0.1']
+# Configura ALLOWED_HOSTS con el nuevo dominio en Render
+ALLOWED_HOSTS = ['artisan-uiwj.onrender.com', 'localhost', '127.0.0.1']
 
-# RENDER_EXTERNA_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-# if RENDER_EXTERNA_HOSTNAME:
-#     ALLOWED_HOSTS.append(RENDER_EXTERNA_HOSTNAME)
+RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-
-
-
-# Application definition
-
+# Configuración de aplicaciones
 INSTALLED_APPS = [
     'admin_interface',
     'django.contrib.admin',
@@ -37,7 +35,6 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,21 +63,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proyecto.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# Configuración de la base de datos
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Artisan',  # Nombre de la base de datos
-        'USER': 'admin',
-        'PASSWORD': 'adbO1NJG',
-        'HOST': 'mysql-43314-0.cloudclusters.net',
-        'PORT': '19751',
+        'NAME': os.getenv('DB_NAME', 'Artisan'),  # Nombre de la base de datos
+        'USER': os.getenv('DB_USER', 'admin'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'adbO1NJG'),
+        'HOST': os.getenv('DB_HOST', 'mysql-43314-0.cloudclusters.net'),
+        'PORT': os.getenv('DB_PORT', '19751'),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -97,24 +90,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
+# Configuración de internacionalización
 LANGUAGE_CODE = 'es-pe'
-
 TIME_ZONE = 'America/Lima'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# Configuración de archivos estáticos y medios
 STATIC_URL = '/static/'
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -132,8 +115,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'bases.Usuario'
-
+# Configuración de mensajes
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
