@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocompletado de Ubigeos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1000;
+        }
+        .ui-menu-item {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .ui-menu-item-wrapper.ui-state-active {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Buscar Distrito</h1>
+        <div class="form-group">
+            <label for="ubigeo-search">Buscar Distrito:</label>
+            <input type="text" id="ubigeo-search" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="codubigeo">Código Ubigeo:</label>
+            <input type="text" id="codubigeo" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label for="departamento">Departamento:</label>
+            <input type="text" id="departamento" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label for="provincia">Provincia:</label>
+            <input type="text" id="provincia" class="form-control" readonly>
+        </div>
+    </div>
+
+    <script>
+    $(function() {
+        $("#ubigeo-search").autocomplete({
+            source: "{% url 'fichas:search_ubigeo' %}",
+            minLength: 2,
+            select: function(event, ui) {
+                $('#codubigeo').val(ui.item.codubigeo);
+                $('#departamento').val(ui.item.departamento);
+                $('#provincia').val(ui.item.provincia);
+            }
+        }).autocomplete("instance")._renderItem = function(ul, item) {
+            return $("<li>")
+                .append("<div><strong>" + item.ubigeo + "</strong><br><small>" + item.provincia + ", " + item.departamento + "</small></div>")
+                .appendTo(ul);
+        };
+    });
+    </script>
+</body>
+</html>

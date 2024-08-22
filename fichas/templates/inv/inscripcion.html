@@ -1,0 +1,176 @@
+{% extends 'base/index.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            Ficha de Inscripción
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="personal-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="true">Datos Personales</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#laboral" role="tab" aria-controls="laboral" aria-selected="false">Datos Laborales</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.dni.id_for_label }}">DNI:</label>
+                                    {{ form.dni }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.nombres.id_for_label }}">Nombres:</label>
+                                    {{ form.nombres }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.apellido_paterno.id_for_label }}">Apellido Paterno:</label>
+                                    {{ form.apellido_paterno }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.apellido_materno.id_for_label }}">Apellido Materno:</label>
+                                    {{ form.apellido_materno }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.fecha_nacimiento.id_for_label }}">Fecha de Nacimiento:</label>
+                                    {{ form.fecha_nacimiento }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.referido_por.id_for_label }}">Referido Por:</label>
+                                    {{ form.referido_por }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.lugar_nacimiento.id_for_label }}">Lugar de Nacimiento:</label>
+                                    {{ form.lugar_nacimiento }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.telefono_fijo.id_for_label }}">Teléfono Fijo:</label>
+                                    {{ form.telefono_fijo }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.celular.id_for_label }}">Celular:</label>
+                                    {{ form.celular }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.sexo.id_for_label }}">Sexo:</label>
+                                    {{ form.sexo }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.estado_civil.id_for_label }}">Estado Civil:</label>
+                                    {{ form.estado_civil }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.grado_instruccion.id_for_label }}">Grado de Instrucción:</label>
+                                    {{ form.grado_instruccion }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.profesion.id_for_label }}">Profesión:</label>
+                                    {{ form.profesion }}
+                                </div>
+                                <!-- Ubigeo Autocomplete -->
+                                <div class="form-group">
+                                    <label for="ubigeo-search">Buscar Distrito:</label>
+                                    <input type="text" id="ubigeo-search" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="codubigeo">Código Ubigeo:</label>
+                                    <input type="text" id="codubigeo" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="departamento">Departamento:</label>
+                                    <input type="text" id="departamento" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="provincia">Provincia:</label>
+                                    <input type="text" id="provincia" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="distrito">Distrito:</label>
+                                    <input type="text" id="distrito" class="form-control" readonly>
+                                </div>
+                                <!-- End Ubigeo Autocomplete -->
+                                <div class="form-group">
+                                    <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
+                                    {{ form.direccion }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="laboral" role="tabpanel" aria-labelledby="laboral-tab">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.centro_laboral.id_for_label }}">Centro Laboral:</label>
+                                    {{ form.centro_laboral }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.cargo_laboral.id_for_label }}">Cargo Laboral:</label>
+                                    {{ form.cargo_laboral }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.direccion_laboral.id_for_label }}">Dirección Laboral:</label>
+                                    {{ form.direccion_laboral }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.distrito_laboral.id_for_label }}">Distrito Laboral:</label>
+                                    {{ form.distrito_laboral }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.provincia_laboral.id_for_label }}">Provincia Laboral:</label>
+                                    {{ form.provincia_laboral }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.departamento_laboral.id_for_label }}">Departamento Laboral:</label>
+                                    {{ form.departamento_laboral }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-right mt-3">
+                <button type="submit" class="btn btn-success btn-custom">Guardar</button>
+                <a href="{% url 'fichas:lista_inscritos' %}" class="btn btn-danger btn-custom">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $("#ubigeo-search").autocomplete({
+        source: "{% url 'fichas:search_ubigeo' %}",
+        minLength: 2,
+        select: function(event, ui) {
+            $('#codubigeo').val(ui.item.codubigeo);
+            $('#departamento').val(ui.item.departamento);
+            $('#provincia').val(ui.item.provincia);
+            $('#distrito').val(ui.item.ubigeo);
+        }
+    }).autocomplete("instance")._renderItem = function(ul, item) {
+        return $("<li>")
+            .append("<div>" + item.ubigeo + ", " + item.provincia + ", " + item.departamento + "</div>")
+            .appendTo(ul);
+    };
+});
+</script>
+{% endblock %}
