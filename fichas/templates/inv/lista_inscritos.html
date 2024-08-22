@@ -2,31 +2,38 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Lista de Inscritos</h1>
+    <h1>Lista de Procesos</h1>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>DNI</th>
-                <th>Nombre</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>Email</th>
-                <th>Fecha de Inscripción</th>
+                <th>Tipo</th>
+                <th>Modelo</th>
+                <th>Categoría</th>
+                <th>Tarifa</th>
+                <th>Fecha y Hora</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for inscrito in inscritos %}
             <tr>
-                <td>{{ inscrito.dni }}</td>
-                <td>{{ inscrito.nombres }}</td>
-                <td>{{ inscrito.apellido_paterno }}</td>
-                <td>{{ inscrito.apellido_materno }}</td>
-                <td>{{ inscrito.email }}</td>
-                <td>{{ inscrito.fecha_inscripcion }}</td>
+                <td>{{ inscrito.tipo }}</td>
+                <td>{{ inscrito.modelo }}</td>
+                <td>{{ inscrito.categoria }}</td>
+                <td>{{ inscrito.tarifa }}</td>
+                <td>{{ inscrito.fecha_hora }}</td>
+                <td>
+                    <a href="{% url 'inv:editar_proceso' inscrito.id %}" class="btn btn-sm btn-success">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a href="{% url 'inv:eliminar_proceso' inscrito.id %}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este proceso?');">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'inscripcion' %}" class="btn btn-primary">Nueva Inscripción</a>
+    <a href="{% url 'inv:inscripcion' %}" class="btn btn-primary">Nuevo Proceso</a>
 </div>
 {% endblock %}

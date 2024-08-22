@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistema de Inscripción de Simpatizantes</title>
-
+  <title>Sistema Artisan</title>
+  <!-- Link de los iconos de lapiz y basura para editar y eliminar  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -87,7 +88,7 @@
   <aside class="main-sidebar sidebar-navy elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">Sistema de Inscripción</span>
+      <span class="brand-text font-weight-light">Sistema de Procesos</span>
     </a>
 
     <!-- Sidebar -->
@@ -118,23 +119,22 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Inscritos
+                Procesos
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              {% comment %}
               <li class="nav-item">
                   <a href="{% url 'fichas:inscripcion' %}" class="nav-link">
                       <i class="nav-icon fas fa-user-plus"></i>
-                      <p>Nueva Inscripción</p>
+                      <p>Nuevo Proceso</p>
                   </a>
               </li>
               
               <li class="nav-item">
                 <a href="{% url 'fichas:lista_inscritos' %}" class="nav-link">
                   <i class="nav-icon fas fa-list"></i>
-                  <p>Lista de Inscritos</p>
+                  <p>Lista de Procesos</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -143,7 +143,6 @@
                   <p>Buscar Distrito</p>
                 </a>
               </li>
-              {% endcomment %}
             </ul>
           </li>
           <!-- Puedes agregar más opciones relacionadas con la gestión de inscritos aquí -->
@@ -191,7 +190,7 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Sistema de Inscripción de Simpatizantes
+      Sistema de Inscripción de Artisan
     </div>
   </footer>
   {% endblock footer %}

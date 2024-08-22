@@ -1,6 +1,22 @@
-# from django import forms
-# from django_select2.forms import ModelSelect2Widget
-# from .models import FichaInscripcion
+from django import forms
+from django_select2.forms import ModelSelect2Widget
+from .models import Procesos 
+
+class ProcesosForm(forms.ModelForm):
+    class Meta:
+        model = Procesos
+        fields = '__all__'
+        widgets = {
+            'id_ordenproduccion' : forms.TextInput(),
+            'id_operario' : forms.TextInput(),
+            'id_seccion' : forms.TextInput(),
+            'fecha_hora': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'tipo' : forms.TextInput(),
+            'modelo' : forms.TextInput(),
+            'categoria' : forms.TextInput(),
+            'tarifa': forms.NumberInput(attrs={'step': '0.01'}),
+        }  
+
 
 # class FichaInscripcionForm(forms.ModelForm):
 #     referido_por = forms.ModelChoiceField(

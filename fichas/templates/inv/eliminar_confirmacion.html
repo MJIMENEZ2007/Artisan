@@ -1,0 +1,18 @@
+{% extends 'base/index.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>¿Estás seguro de que deseas eliminar este proceso?</h2>
+    <p><strong>Tipo:</strong> {{ proceso.tipo }}</p>
+    <p><strong>Modelo:</strong> {{ proceso.modelo }}</p>
+    <p><strong>Categoría:</strong> {{ proceso.categoria }}</p>
+    <p><strong>Tarifa:</strong> {{ proceso.tarifa }}</p>
+    <p><strong>Fecha y Hora:</strong> {{ proceso.fecha_hora }}</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'inv:lista_inscritos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
